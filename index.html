@@ -1695,7 +1695,11 @@
     /* ── FETCH ── */
     async function fetchData() {
       try {
-        const r = await fetch(`${C.api}/sensor-data`), { headers: { 'Content-Type': 'application/json' } });
+      const r = await fetch(`${C.api}/sensor-data`, {
+       headers: {
+       'Content-Type': 'application/json'
+                }
+        });     
         if (!r.ok) throw new Error(`${C.ls}: HTTP ${r.status}`);
         const j = await r.json(); sensorData = j.data || []; hideErr();
         setPill('api', true, 'OK');
@@ -1890,7 +1894,7 @@
       <td>${sf(r.temperature, 2)}°C</td>
       <td>${sf(r.pressure, 1)}</td>
       <td>${sf(r.altitude, 1)}</td>
-      <td>${r.gas_sensor || '—'}</td>
+      <td>${r.mq2_percent || '—'}</td>
       <td>${r.motion_detected ? '<span class="tag err">YES</span>' : '<span class="tag neutral">NO</span>'}</td>
       <td>${r.wifi_signal} dBm</td>
       <td><span class="tag ${r.blockchain_auth ? 'ok' : 'err'}">${r.blockchain_auth ? '✓' : '✗'}</span></td>
