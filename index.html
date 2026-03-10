@@ -1644,8 +1644,8 @@
 
   <script>
     /* ── CONFIG ── */
-    let C = {
-      api: 'https://25r25sm1ee.execute-api.ap-south-1.amazonaws.com/sensor-data'
+        let C = {
+  api: 'https://25r25sm1ee.execute-api.ap-south-1.amazonaws.com'
   ls: 'GetLatestSensorData', lsec: 'ESP32DataProcessor',
       ts: 'sensor_data', tsec: 'security_logs', tu: 'user',
       reg: 'ap-south-1', ms: 2000
@@ -1695,7 +1695,7 @@
     /* ── FETCH ── */
     async function fetchData() {
       try {
-        const r = await fetch(`${C.api}/api/sensor-data?limit=100&table=${C.ts}`, { headers: { 'Content-Type': 'application/json' } });
+        const r = await fetch(`${C.api}/sensor-data`), { headers: { 'Content-Type': 'application/json' } });
         if (!r.ok) throw new Error(`${C.ls}: HTTP ${r.status}`);
         const j = await r.json(); sensorData = j.data || []; hideErr();
         setPill('api', true, 'OK');
@@ -1780,7 +1780,7 @@
   </div>
   <div class="card sensor-card">
     <div class="sensor-lbl"><span>Gas MQ-135</span><span class="sensor-lbl-icon">◈</span></div>
-    <div class="sensor-val">${lat.gas_sensor || 0}</div>
+    <div class="sensor-val">${lat.mq2_percent || 0}</div>
     <div class="sensor-avg">ADC 0–4095</div>
     <span class="tag ok">Air Quality: Good</span>
   </div>
