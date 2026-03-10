@@ -1645,7 +1645,7 @@
   <script>
     /* ── CONFIG ── */
         let C = {
-  api: 'https://25r25sm1ee.execute-api.ap-south-1.amazonaws.com/api'
+api: 'https://25r25sm1ee.execute-api.ap-south-1.amazonaws.com/api'
   ls: 'GetLatestSensorData', lsec: 'ESP32DataProcessor',
       ts: 'sensor_data', tsec: 'security_logs', tu: 'user',
       reg: 'ap-south-1', ms: 2000
@@ -1757,7 +1757,7 @@
       }
 
       const dd = selDev ? sensorData.filter(r => r.device_id === selDev) : sensorData;
-      const lat = dd[0] || null; const ss = g('sensorSection');
+      cconst lat = dd[dd.length - 1]|| null; const ss = g('sensorSection');
       if (!lat) { ss.style.display = 'none'; return; }
       ss.style.display = 'block';
       g('selDevBadge').textContent = selDev ? `— ${selDev}` : '';
