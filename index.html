@@ -1767,7 +1767,7 @@
       }
 
       const dd = selDev ? sensorData.filter(r => r.device_id === selDev) : sensorData;
-      const lat = dd[dd.length - 1] || null;
+      const lat = dd[0] || null;
         const ss = g('sensorSection');
 
         if (!lat) {
