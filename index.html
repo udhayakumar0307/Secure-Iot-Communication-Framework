@@ -1761,9 +1761,15 @@
       }
 
       const dd = selDev ? sensorData.filter(r => r.device_id === selDev) : sensorData;
-      cconst lat = dd[dd.length - 1]|| null; const ss = g('sensorSection');
-      if (!lat) { ss.style.display = 'none'; return; }
-      ss.style.display = 'block';
+const lat = dd[dd.length - 1] || null;
+const ss = g('sensorSection');
+
+if (!lat) {
+  ss.style.display = 'none';
+  return;
+}
+
+ss.style.display = 'block';
       g('selDevBadge').textContent = selDev ? `— ${selDev}` : '';
       const avg = stats || {};
       const wok = (lat.wifi_signal || -100) > -70; const wwarn = (lat.wifi_signal || -100) > -80;
