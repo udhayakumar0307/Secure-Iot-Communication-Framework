@@ -1644,12 +1644,16 @@
 
   <script>
     /* ── CONFIG ── */
-        let C = {
-api: 'https://25r25sm1ee.execute-api.ap-south-1.amazonaws.com/api'
-  ls: 'GetLatestSensorData', lsec: 'ESP32DataProcessor',
-      ts: 'sensor_data', tsec: 'security_logs', tu: 'user',
-      reg: 'ap-south-1', ms: 2000
-    };
+       let C = {
+  api: 'https://25r25sm1ee.execute-api.ap-south-1.amazonaws.com/api',
+  ls: 'GetLatestSensorData',
+  lsec: 'ESP32DataProcessor',
+  ts: 'sensor_data',
+  tsec: 'security_logs',
+  tu: 'user',
+  reg: 'ap-south-1',
+  ms: 2000
+};
 
     /* ── STATE ── */
     let sensorData = [], securityEvents = [], secStatus = null, stats = null;
