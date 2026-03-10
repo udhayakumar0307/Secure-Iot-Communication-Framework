@@ -1695,7 +1695,15 @@
       const open = g('cfgBody').classList.toggle('open');
       g('cfgChev').classList.toggle('open', open);
     }
-
+    function render() {
+  if (activeTab === 'dashboard') {
+    rDash();
+  } else if (activeTab === 'security') {
+    rSec();
+  } else if (activeTab === 'output') {
+    rOut();
+  }
+}
     /* ── FETCH ── */
     async function fetchData() {
   try {
@@ -1759,13 +1767,13 @@
       }
 
       const dd = selDev ? sensorData.filter(r => r.device_id === selDev) : sensorData;
-const lat = dd[dd.length - 1] || null;
-const ss = g('sensorSection');
+      const lat = dd[dd.length - 1] || null;
+        const ss = g('sensorSection');
 
-if (!lat) {
-  ss.style.display = 'none';
-  return;
-}
+        if (!lat) {
+           ss.style.display = 'none';
+           return;
+        }
 
 ss.style.display = 'block';
       g('selDevBadge').textContent = selDev ? `— ${selDev}` : '';
