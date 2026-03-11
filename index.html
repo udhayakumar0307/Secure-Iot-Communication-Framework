@@ -1766,7 +1766,8 @@
         }).join('');
       }
 
-      const dd = selDev ? sensorData.filter(r => r.device_id === selDev) : sensorData;
+      const dd = (selDev ? sensorData.filter(r => r.device_id === selDev) : sensorData)
+      .sort((a,b)=> new Date(b.received_at) - new Date(a.received_at));;
       const lat = dd[0] || null;
         const ss = g('sensorSection');
 
