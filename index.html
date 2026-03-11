@@ -1805,7 +1805,10 @@
     if (!r.ok) throw new Error(`${C.ls}: HTTP ${r.status}`);
 
     const j = await r.json();
+
     sensorData = j.data || [];
+    securityEvents = j.security_logs || [];
+
     hideErr();
 
     setPill('api', true, 'OK');
@@ -1945,12 +1948,9 @@ ss.style.display = 'block';
       if (!securityEvents.length) {
         tb.innerHTML = `<tr><td colspan="7" class="no-data">No events in security_logs — system secure.</td></tr>`;
       } else {
-        tb.innerHTML = securityEvents.slice(0, 20).map(ev => `
+       tb.innerHTML = securityEvents.slice(0, 20).map(ev => `
 <tr class="${ev.status === 'BLOCKED' ? 'row-blocked' : ''}">
-
-<td class="mono" style="font-size:11px">
-${new Date(ev.timestamp).toLocaleString()}
-</td>
+<td class="mono" style="font-size:11px">${new Date(ev.timestamp).toLocaleString()}</td>
 
 <td>
 <span class="ev-type-badge ${(ev.attack_type || '').toLowerCase()}">
